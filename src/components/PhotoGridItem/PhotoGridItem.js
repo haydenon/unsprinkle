@@ -1,11 +1,32 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
 const PhotoGridItem = ({ id, src, alt, tags }) => {
+  const imagePath = (format, scale) => {
+    const scaleValue = scale > 1 ? `@${scale}x` : "";
+    return `${src}${scaleValue}.${format}`;
+  };
   return (
     <article>
       <Anchor href={`/photos/${id}`}>
-        <Image src={src} />
+        <picture>
+          <source
+            type="image/avif"
+            srcSet={`
+            ${imagePath("avif", 1)} 1x,
+            ${imagePath("avif", 2)} 2x,
+            ${imagePath("avif", 3)} 3x,
+        `}
+          />
+          <source
+            srcset={`
+            ${imagePath("jpg", 1)} 1x,
+            ${imagePath("jpg", 2)} 2x,
+            ${imagePath("jpg", 3)} 3x
+          `}
+          />
+          <Image src={imagePath("jpg")} />
+        </picture>
       </Anchor>
       <Tags>
         {tags.map((tag) => (

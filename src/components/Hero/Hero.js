@@ -1,10 +1,31 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
 const Hero = () => {
+  const imagePath = (format, scale) => {
+    const scaleValue = scale > 1 ? `@${scale}x` : "";
+    return `/images/hero-img${scaleValue}.${format}`;
+  };
   return (
     <Wrapper>
-      <HeroImage src="/images/hero-img.jpg" />
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={`
+            ${imagePath("avif", 1)} 1x,
+            ${imagePath("avif", 2)} 2x,
+            ${imagePath("avif", 3)} 3x,
+        `}
+        />
+        <source
+          srcset={`
+            ${imagePath("jpg", 1)} 1x,
+            ${imagePath("jpg", 2)} 2x,
+            ${imagePath("jpg", 3)} 3x
+          `}
+        />
+        <HeroImage src={imagePath("jpg", 1)} />
+      </picture>
       <Swoop src="/swoop.svg" />
     </Wrapper>
   );
