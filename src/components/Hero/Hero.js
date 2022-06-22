@@ -24,9 +24,12 @@ const Hero = () => {
             ${imagePath("jpg", 3)} 3x
           `}
         />
-        <HeroImage src={imagePath("jpg", 1)} />
+        <HeroImage
+          alt="An example of a picture available on Unsprinkle"
+          src={imagePath("jpg", 1)}
+        />
       </picture>
-      <Swoop src="/swoop.svg" />
+      <Swoop alt="" src="/swoop.svg" />
     </Wrapper>
   );
 };

@@ -19,13 +19,14 @@ const PhotoGridItem = ({ id, src, alt, tags }) => {
         `}
           />
           <source
+            type="image/jpeg"
             srcset={`
             ${imagePath("jpg", 1)} 1x,
             ${imagePath("jpg", 2)} 2x,
             ${imagePath("jpg", 3)} 3x
           `}
           />
-          <Image src={imagePath("jpg")} />
+          <Image alt={alt} src={imagePath("jpg")} />
         </picture>
       </Anchor>
       <Tags>
